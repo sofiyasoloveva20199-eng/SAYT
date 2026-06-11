@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Фокус-группа «ЭзоДвиж»</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;600;800&family=Manrope:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#05030c;
+    --bg2:#0b0717;
+    --panel:#100a22;
+    --violet:#8B5CF6;
+    --violet2:#A855F7;
+    --glow:#7B3FF2;
+    --line:rgba(255,255,255,.10);
+    --txt:#EDEAF7;
+    --mut:#8E87A8;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--txt);font-family:'Manrope',system-ui,sans-serif;line-height:1.6;overflow-x:hidden}
+  body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+    background:
+      radial-gradient(1px 1px at 20% 30%, rgba(255,255,255,.5), transparent),
+      radial-gradient(1px 1px at 70% 60%, rgba(255,255,255,.35), transparent),
+      radial-gradient(1px 1px at 40% 80%, rgba(255,255,255,.3), transparent),
+      radial-gradient(1px 1px at 85% 20%, rgba(255,255,255,.4), transparent),
+      radial-gradient(1px 1px at 55% 15%, rgba(255,255,255,.25), transparent);
+    background-repeat:repeat;opacity:.6}
+  h1,h2,h3,.dpl{font-family:'Unbounded',sans-serif;letter-spacing:-.01em;line-height:1.12}
+  .mono{font-family:'Space Mono',monospace;text-transform:uppercase;letter-spacing:.18em;font-size:11px;color:var(--mut)}
+  .wrap{max-width:1140px;margin:0 auto;padding:0 24px;position:relative;z-index:1}
+  section{padding:92px 0;position:relative;z-index:1}
+  .vio{color:var(--violet2)}
+  .eyebrow{font-family:'Space Mono',monospace;text-transform:uppercase;letter-spacing:.2em;font-size:12px;color:var(--violet2);margin-bottom:20px}
+
+  /* nav */
+  .nav{position:absolute;top:0;left:0;right:0;z-index:5;padding:22px 0}
+  .nav .wrap{display:flex;align-items:center;justify-content:space-between}
+  .logo{font-family:'Unbounded';font-weight:800;letter-spacing:.05em;font-size:15px}
+  .logo span{color:var(--violet2)}
+  .nav .menu{display:flex;gap:26px}
+  .nav .menu a{color:var(--mut);text-decoration:none;font-family:'Space Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.14em}
+  .nav .menu a:hover{color:var(--txt)}
+
+  /* buttons */
+  .btn{display:inline-block;cursor:pointer;border:none;text-decoration:none;
+    font-family:'Space Mono',monospace;text-transform:uppercase;letter-spacing:.12em;font-size:13px;font-weight:700;color:#fff;
+    padding:17px 32px;border-radius:4px;
+    background:linear-gradient(100deg,#FF2D7E,#FF5BA0);
+    box-shadow:0 0 0 1px rgba(255,62,143,.55), 0 10px 40px rgba(255,46,126,.5);
+    transition:.2s}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 0 0 1px rgba(255,62,143,.85),0 14px 54px rgba(255,46,126,.7)}
+  .btn-ghost{background:transparent;border:1px solid rgba(255,62,143,.6);box-shadow:none;color:var(--txt)}
+  .btn-ghost:hover{background:rgba(255,46,126,.14);box-shadow:0 0 24px rgba(255,46,126,.4)}
+  .micro{font-family:'Space Mono',monospace;font-size:11px;color:var(--mut);margin-top:16px;letter-spacing:.06em}
+
+  /* HERO */
+  .hero{position:relative;min-height:100vh;min-height:100svh;background:#05030c;overflow:hidden}
+  .hero-glow{position:absolute;z-index:0;top:12%;left:50%;transform:translateX(-50%);
+    width:min(86vw,520px);aspect-ratio:1;border-radius:50%;
+    background:radial-gradient(circle,rgba(255,62,143,.22),transparent 62%);filter:blur(40px)}
+  .hero-word{position:absolute;z-index:1;left:0;right:0;top:37%;text-align:center;
+    font-family:'Unbounded';font-weight:300;line-height:.86;letter-spacing:.03em;
+    font-size:clamp(74px,26vw,210px);color:#fff;opacity:.96;text-shadow:0 0 60px rgba(255,62,143,.45)}
+  .hero-photo{position:absolute;z-index:2;bottom:0;left:50%;transform:translateX(-50%);
+    height:94%;width:auto;max-width:128%;object-fit:contain;object-position:bottom center;display:block}
+  .hero-grad{position:absolute;z-index:3;inset:0;pointer-events:none;
+    background:linear-gradient(180deg,rgba(5,3,12,.45) 0%,transparent 20%,transparent 50%,rgba(5,3,12,.8) 78%,#05030c 100%)}
+  .hero-top{position:absolute;z-index:4;top:84px;left:0;right:0;text-align:center;padding:0 20px}
+  .hero-content{position:absolute;z-index:4;left:0;right:0;bottom:5%;text-align:center;padding:0 22px}
+  .hero-sub{max-width:520px;margin:0 auto 22px;font-size:clamp(16px,4.3vw,21px);color:var(--txt);text-shadow:0 2px 18px #000}
+  .hero .corner{position:absolute;z-index:3;color:var(--mut)}
+  .c-tl{top:96px;left:26px;text-align:left}
+  .c-tr{top:96px;right:26px;text-align:right}
+  .c-bl{bottom:34px;left:26px;text-align:left}
+  .vline{position:absolute;right:40px;top:38%;height:160px;width:1px;background:linear-gradient(var(--violet2),transparent);z-index:3}
+  .vline span{position:absolute;top:50%;right:8px;transform:rotate(90deg) translateX(50%);transform-origin:right;white-space:nowrap}
+
+  /* PAIN */
+  .pain-list{list-style:none;display:grid;gap:13px;margin-top:30px;max-width:840px}
+  .pain-list li{background:var(--panel);border:1px solid var(--line);border-left:2px solid var(--violet2);
+    border-radius:8px;padding:18px 20px;font-size:17px}
+  .turn{margin-top:32px;font-family:'Unbounded';font-weight:400;font-size:clamp(20px,3vw,28px)}
+
+  /* CASES */
+  .story{max-width:780px;font-size:18px;color:var(--mut)}
+  .story p{margin-bottom:15px}
+  .story b{color:var(--txt)}
+  .cases{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:16px;margin-top:34px}
+  .case{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:24px;position:relative;overflow:hidden;display:flex;flex-direction:column}
+  .case::after{content:"✦";position:absolute;top:16px;right:18px;color:var(--violet2);opacity:.5}
+  .case .name{font-family:'Unbounded';font-weight:600;font-size:18px}
+  .case .niche{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--mut);margin:6px 0 14px}
+  .case .res{font-size:15px;color:var(--mut)}
+  .case .num{color:var(--violet2);font-weight:700}
+  .case .shot{width:100%;height:300px;object-fit:contain;background:#0c0820;border-radius:10px;margin-top:auto;padding-top:16px;border:1px solid var(--line);display:block}
+
+  /* WHAT */
+  .lead{background:linear-gradient(135deg,rgba(123,63,242,.18),rgba(168,85,247,.06));
+    border:1px solid var(--line);border-radius:20px;padding:42px}
+  .checklist{list-style:none;display:grid;gap:14px;margin-top:22px}
+  .checklist li{position:relative;padding-left:36px;font-size:17px}
+  .checklist li::before{content:"✦";position:absolute;left:0;top:1px;color:var(--violet2)}
+
+  /* PROGRAM CAROUSEL */
+  .prog-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap}
+  .carousel{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;
+    padding:30px 24px 30px;margin:30px -24px 0;scrollbar-width:none}
+  .carousel::-webkit-scrollbar{display:none}
+  .mod{scroll-snap-align:start;flex:0 0 320px;min-height:300px;
+    background:linear-gradient(180deg,var(--panel),#0c0820);
+    border:1px solid var(--line);border-radius:18px;padding:28px;position:relative;transition:.2s}
+  .mod:hover{border-color:rgba(168,85,247,.6);box-shadow:0 0 40px rgba(123,63,242,.25);transform:translateY(-4px)}
+  .mod .n{font-family:'Space Mono',monospace;font-size:13px;color:var(--violet2);letter-spacing:.2em}
+  .mod h3{font-size:20px;margin:14px 0 12px}
+  .mod p{color:var(--mut);font-size:14.5px}
+  .mod .sub{color:var(--txt);font-weight:700;margin-top:10px;font-size:14px}
+  .arrows{display:flex;gap:10px}
+  .arrow{width:46px;height:46px;border-radius:50%;border:1px solid var(--line);background:var(--panel);
+    color:var(--txt);font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.2s}
+  .arrow:hover{border-color:var(--violet2);background:rgba(123,63,242,.2)}
+
+  /* RESULT bullets */
+  .res-list{list-style:none;display:grid;gap:14px;max-width:800px;font-size:18px}
+  .res-list li{position:relative;padding-left:38px}
+  .res-list li::before{content:"◆";position:absolute;left:0;color:var(--violet2)}
+
+  /* BEFORE/AFTER */
+  .ba{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:34px}
+  .ba .col{border-radius:18px;padding:30px}
+  .ba .before{background:var(--panel);border:1px solid var(--line)}
+  .ba .after{background:linear-gradient(160deg,rgba(123,63,242,.2),rgba(168,85,247,.08));border:1px solid rgba(168,85,247,.5)}
+  .ba h3{font-size:17px;margin-bottom:18px;font-family:'Space Mono';text-transform:uppercase;letter-spacing:.12em}
+  .ba ul{list-style:none;display:grid;gap:12px}
+  .ba li{padding-left:26px;position:relative;font-size:16px}
+  .before li::before{content:"✕";position:absolute;left:0;color:#6c6688}
+  .after li::before{content:"✓";position:absolute;left:0;color:var(--violet2);font-weight:700}
+
+  /* STEPS */
+  .steps{counter-reset:s;display:grid;gap:13px;margin-top:30px;max-width:820px}
+  .step{counter-increment:s;background:var(--panel);border:1px solid var(--line);border-radius:12px;
+    padding:20px 22px 20px 66px;position:relative;font-size:17px}
+  .step::before{content:counter(s);position:absolute;left:18px;top:50%;transform:translateY(-50%);
+    width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+    font-family:'Space Mono';font-weight:700;color:#fff;background:linear-gradient(120deg,var(--glow),var(--violet2))}
+  .price{margin-top:24px;background:var(--panel);border:1px solid rgba(168,85,247,.5);border-radius:16px;padding:24px;text-align:center;font-size:18px}
+  .price b{font-family:'Unbounded';font-size:22px}
+
+  /* FAQ */
+  .faq{display:grid;gap:13px;margin-top:32px;max-width:860px}
+  .qa{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:24px}
+  .qa .q{font-family:'Unbounded';font-weight:600;font-size:17px;margin-bottom:10px}
+  .qa .a{color:var(--mut);font-size:16px}
+  .qa .a b{color:var(--txt)}
+
+  .final{text-align:center}
+  .final h2{font-size:clamp(24px,4vw,42px);max-width:780px;margin:0 auto 28px;font-weight:400}
+  .seat{display:block;margin-top:16px;font-family:'Space Mono';font-size:12px;letter-spacing:.14em;color:var(--violet2)}
+  .center{text-align:center}.mt{margin-top:28px}
+  footer{padding:44px 0;text-align:center;color:var(--mut);font-family:'Space Mono';font-size:11px;letter-spacing:.14em;border-top:1px solid var(--line)}
+
+  @media(max-width:820px){
+    section{padding:64px 0}
+    .nav .menu{display:none}
+    .ba{grid-template-columns:1fr}
+    .mod{flex-basis:80vw}
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav"><div class="wrap">
+  <div class="logo">ЭЗО<span>ДВИЖ</span></div>
+  <div class="menu">
+    <a href="#program">Программа</a>
+    <a href="#cases">Кейсы</a>
+    <a href="#faq">Вопросы</a>
+    <a href="#join">Попасть</a>
+  </div>
+</div></nav>
+
+<!-- ░ ЭКРАН 1 — HERO ░ -->
+<header class="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-word">ЭЗО<br>ДВИЖ</div>
+  <img class="hero-photo" src="img/hero-cut.png" alt="">
+  <div class="hero-grad"></div>
+  <div class="hero-top"><div class="eyebrow" style="margin:0">Фокус-группа «ЭзоДвиж» · 15 мест</div></div>
+  <div class="hero-content">
+    <p class="hero-sub">Как в нестабильное время всегда получать клиентов на <span class="vio">200.000+</span> и тратить минимум времени на блог?</p>
+    <a href="#program" class="btn">Узнать программу</a>
+  </div>
+</header>
+
+<!-- ░ ЭКРАН 2 — БОЛИ ░ -->
+<section>
+  <div class="wrap">
+    <h2 style="font-size:clamp(22px,3.4vw,34px);max-width:860px">За 4 года продвижения эзотериков я услышала и решила ваши проблемы:</h2>
+    <ul class="pain-list">
+      <li>Прошла кучу обучений: эзотерика, монтаж, рилсы — а в голове хаос.</li>
+      <li>В блоге нет структуры, ведёшь по наитию: месяц активно — два пропала, и снова с нуля.</li>
+      <li>Снимаешь рилс, но либо нет просмотров, либо одни халявщики — а потратила на это весь день.</li>
+      <li>Нестабильный сарафан, тревожность. Наняла СММ — а толку нет.</li>
+      <li>А ещё страшно: инсту могут снести за ночь — и все старания коту под хвост.</li>
+    </ul>
+    <div class="turn">Узнала себя?</div>
+  </div>
+</section>
+
+<!-- ░ ЭКРАН 3 — КТО Я + КЕЙСЫ ░ -->
+<section id="cases" style="background:var(--bg2)">
+  <div class="wrap">
+    <div class="eyebrow">Кто я</div>
+    <h2 style="font-size:clamp(22px,3.4vw,34px);margin-bottom:24px">Я эзотерик, который прошёл этот ад сам</h2>
+    <div class="story">
+      <p>Мой инстаграм был <b>мёртвым целый год</b>: я вылизывала рилсы до идеала, снимала только в студии, переписывала сценарии по сто раз. Ноль.</p>
+      <p>А ролик, который принёс мне первые <span class="vio">100.000 просмотров и 500.000 ₽</span>, я сняла на телефон за 10 минут, пока гуляла с собакой.</p>
+      <p>Когда я перестала играть в перфекционизм и собрала <b>систему</b> — всё поехало. И теперь я собираю её для других:</p>
+    </div>
+    <div class="cases">
+      <div class="case"><div class="name">Ира</div><div class="niche">Ритуалы + таро</div><div class="res">Набрала <span class="num">57 200</span> подписчиков из <span class="num">6 171</span>, вышла на <span class="num">1,5 млн ₽/мес</span> с ритуалов.</div><img class="shot" src="img/case-ira.jpg" alt="" onerror="this.remove()"></div>
+      <div class="case"><div class="name">Юля</div><div class="niche">Ведьма · наставник</div><div class="res">Из найма и нуля с блога → ушла из найма, доход <span class="num">от 270.000 ₽</span>, <span class="num">+7 000</span> подписчиков.</div><img class="shot" src="img/case-yulya.jpg" alt="" onerror="this.remove()"></div>
+      <div class="case"><div class="name">Катя</div><div class="niche">Чистки и отливки</div><div class="res">Было до 100к по сарафану → стабильные <span class="num">400.000 ₽</span>, <span class="num">+1 500</span> подписчиков и новый айфон.</div><img class="shot" src="img/case-katya.jpg" alt="" onerror="this.remove()"></div>
+      <div class="case"><div class="name">Вика</div><div class="niche">Таро + ритуалы</div><div class="res">Из <span class="num">330</span> до <span class="num">3 547</span> подписчиков, стабильные <span class="num">400.000 ₽</span> и переезд в Грузию.</div><img class="shot" src="img/case-vika.jpg" alt="" onerror="this.remove()"></div>
+      <div class="case"><div class="name">Катя Зыкова</div><div class="niche">Таро + матрица судьбы</div><div class="res"><span class="num">+5 000</span> подписчиков (10к → 15к), переехала в Питер.</div><img class="shot" src="img/case-zykova.jpg" alt="" onerror="this.remove()"></div>
+    </div>
+    <p class="story mt" style="font-size:18px">Я не обещаю миллионы за неделю. Я даю <b>систему, которая работает, даже если ты сто раз начинала и бросала.</b></p>
+  </div>
+</section>
+
+<!-- ░ ЭКРАН 4 — ЧТО ЭТО ░ -->
+<section>
+  <div class="wrap">
+    <div class="lead">
+      <div class="eyebrow">Что это</div>
+      <h2 style="font-size:clamp(20px,3vw,30px)">Группа «ЭзоДвижения» — это не очередной курс, где тебя «кинули в воду и сама плыви»</h2>
+      <p class="story mt" style="font-size:17px">Это <b>2 месяца</b>, где ты не копишь таблицы в телефоне, а делаешь с первого дня и ловишь первый результат уже на первой неделе.</p>
+      <p class="story" style="margin-top:14px">За поток ты:</p>
+      <ul class="checklist">
+        <li>выберешь ОДНУ связку соцсетей под свой типаж (а не будешь вести десять и сдохнешь);</li>
+        <li>поставишь контент на ИИ — без того GPT, что пишет «Красиво. Драматично. Топорно»;</li>
+        <li>соберёшь воронки, которые приводят платящих, а не зевак.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ░ ЭКРАН 5 — ПРОГРАММА (КАРУСЕЛЬ) ░ -->
+<section id="program" style="background:var(--bg2)">
+  <div class="wrap">
+    <div class="prog-head">
+      <div>
+        <div class="eyebrow">Программа</div>
+        <h2 style="font-size:clamp(24px,3.6vw,38px)">8 блоков — листай →</h2>
+      </div>
+      <div class="arrows">
+        <button class="arrow" onclick="slideProg(-1)">‹</button>
+        <button class="arrow" onclick="slideProg(1)">›</button>
+      </div>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="carousel" id="prog">
+      <div class="mod"><div class="n">01</div><h3>Анализ ЦА и смыслы</h3><p>Кому и что ты продаёшь — дословными болями клиента, а не «женской аудитории 25+». Перестаёшь вещать в воздух.</p></div>
+      <div class="mod"><div class="n">02</div><h3>Личность без душных распаковок</h3><p>Никаких «распаковок на 100 вопросов» и инфоцыганщины: только экологичные выёбоны — как рассказывать о себе, чтобы шли ИМЕННО к тебе. Почему визуал и обложки почти не решают и как найти свою уникальность.</p></div>
+      <div class="mod"><div class="n">03</div><h3>Базовые воронки продаж</h3><p>Путь клиента от «кто ты?» до «ХОЧУ КУПИТЬ»: что это, примеры и как построить без заморочек — не став маркетологом, но получая постоянные продажи без прогревов.</p></div>
+      <div class="mod"><div class="n">04</div><h3>Трафик — сердце всего</h3><p>Откуда брать новых людей и идеи каждый день. <span class="sub">Reels, которые залетают:</span> структуры и триггеры (включая пробные ролики), хуки, что останавливают палец. <span class="sub">Посты-карусели:</span> как делать через ИИ, когда не нужна камера.</p></div>
+      <div class="mod"><div class="n">05</div><h3>Доп. соцсети</h3><p>Чтобы не хранить «все яйца в одной корзине». <span class="sub">YouTube</span> — находят через поиск, работает на тебя годами. <span class="sub">Threads</span> — клиенты за 5 минут в день. <span class="sub">Телеграм</span> — для прогрева и продаж без «купи-купи».</p></div>
+      <div class="mod"><div class="n">06</div><h3>Всё о продажах</h3><p>На каждом этапе и без впариваний. Челлендж с призовыми местами.</p></div>
+      <div class="mod"><div class="n">07</div><h3>ИИ-конвейер</h3><p>Промпты для новичков и серьёзный арсенал для продолжающих: ИИ-ассистенты, дизайн каруселей, ИИ-фото и видео — при желании даже сайты вроде этого.</p></div>
+      <div class="mod"><div class="n">08</div><h3>Личная поддержка от меня</h3><p>Разборы раз в неделю и обратная связь. Не просто уроки и теория, а реальная практика под присмотром и в группе таких же, как ты — без спешки, со временем про запас.</p></div>
+    </div>
+  </div>
+  <div class="wrap center mt"><a href="#join" class="btn">Хочу попасть!</a></div>
+</section>
+
+<!-- ░ ЭКРАН 6 — РЕЗУЛЬТАТ ░ -->
+<section>
+  <div class="wrap">
+    <div class="eyebrow">Что на выходе</div>
+    <ul class="res-list">
+      <li>Программа именно для помогающих практиков.</li>
+      <li>Первые результаты в среднем через месяц.</li>
+      <li>ИИ, который не заменит эзотериков, а позволит тебе обогнать коллег.</li>
+      <li>Связка, которая подходит продвижению именно твоей нише и типажу личности.</li>
+      <li>Стабильные 200к+ после изучения и внедрения всех инструментов.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ░ ЭКРАН 7 — ДО/ПОСЛЕ ░ -->
+<section style="background:var(--bg2)">
+  <div class="wrap">
+    <div class="ba">
+      <div class="col before">
+        <h3>Без программы «ЭзоДвиж»</h3>
+        <ul>
+          <li>Боишься поднять стоимость.</li>
+          <li>По-старому клиенты уже не приходят, а как по-новому — не ясно.</li>
+          <li>Пытаешься сделать всё идеально и выгораешь.</li>
+          <li>При слове «инстаграм» дёргается глаз.</li>
+        </ul>
+      </div>
+      <div class="col after">
+        <h3>После программы «ЭзоДвиж»</h3>
+        <ul>
+          <li>Клиенты приходят НА ТЕБЯ органически.</li>
+          <li>Идей куча, успеть бы всё реализовать (ах да, этим займётся ИИ).</li>
+          <li>Полностью контролируешь свой доход.</li>
+          <li>Продаёшь что хочешь и когда хочешь, без сезонности, на своих условиях.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ░ ЭКРАН 8 — КАК ПОПАСТЬ ░ -->
+<section id="join">
+  <div class="wrap">
+    <div class="eyebrow">Как попасть</div>
+    <div class="steps">
+      <div class="step">Оставляешь заявку — короткая анкета на 2 минуты.</div>
+      <div class="step">Я или моя команда пишем тебе и приглашаем на созвон-диагностику.</div>
+      <div class="step">На созвоне разбираем, где у тебя сливаются деньги, пишем план работы со мной или профи-командой.</div>
+      <div class="step">Если по пути — забираешь место. Их очень мало, так что мы тоже ничего не впариваем.</div>
+    </div>
+    <div class="price">Цена — <b>от 6.666 ₽ в месяц</b>. Окупается за 3 твои продажи.</div>
+    <div class="center mt"><a href="#" class="btn">Оставить заявку на созвон</a><span class="seat">Осталось 15 из 15 мест</span></div>
+  </div>
+</section>
+
+<!-- ░ ЭКРАН 9 — FAQ ░ -->
+<section id="faq" style="background:var(--bg2)">
+  <div class="wrap">
+    <div class="eyebrow">Возражения</div>
+    <div class="faq">
+      <div class="qa"><div class="q">«Инста уже не работает, её запрещают, аккаунты блокируют»</div><div class="a">В 2025 потрачено более <b>130 миллионов</b> на эзотериков, и цифра растёт. Мы развиваем не одну соцсеть и не сходим с ума при этом, но я лично сделала первый миллион рублей <b>после первых блокировок</b> — клиенты точно есть.</div></div>
+      <div class="qa"><div class="q">«Конкуренция огромная»</div><div class="a">Это твой инфопузырь: по факту <b>70% эзотериков сливаются</b> через 3 месяца ведения блога, а те, кто ведёт годами, часто не используют всех инструментов и продолжают делать «Карту дня».</div></div>
+      <div class="qa"><div class="q">«Я не блогер, отшельник, боюсь камеры»</div><div class="a">Есть связка <b>тредс + карусели + ТГ — вообще без лица</b>. Выберем формат под твой типаж.</div></div>
+      <div class="qa"><div class="q">«Нет времени, маленький ребёнок»</div><div class="a"><b>7 роликов за 2–3 часа в неделю</b> на ИИ. Система как раз для тех, у кого нет времени.</div></div>
+      <div class="qa"><div class="q">«Ненавижу продавать, не хочу впаривать»</div><div class="a">Я тоже. Поэтому здесь — продажи через <b>ценность, пути клиента и автоматизации</b>. Ты не станешь маркетологом, но начнёшь контролировать свой доход.</div></div>
+      <div class="qa"><div class="q">«Прошла уже миллион курсов, толку ноль»</div><div class="a">Потому что их строили не эзотерики и без системы. Тут ты делаешь с первого дня, а <b>комьюнити, обратная связь, разборы и домашка не дадут тебе слиться</b>, как с остальных курсов. Здесь не отсиживаются.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ░ ФИНАЛ ░ -->
+<section class="final">
+  <div class="wrap">
+    <h2>Здесь не отсиживаются. Здесь двигаются.</h2>
+    <a href="#" class="btn">Забрать своё место по лучшим условиям</a>
+    <span class="seat">15 мест · цена ниже прошлых потоков</span>
+  </div>
+</section>
+
+<footer>Фокус-группа «ЭзоДвиж» · продвижение для эзотериков · 2026</footer>
+
+<script>
+  function slideProg(dir){
+    var c=document.getElementById('prog');
+    c.scrollBy({left:dir*338,behavior:'smooth'});
+  }
+</script>
+</body>
+</html>
