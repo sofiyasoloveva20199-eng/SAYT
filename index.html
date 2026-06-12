@@ -34,6 +34,9 @@
   .mono{font-family:'Space Mono',monospace;text-transform:uppercase;letter-spacing:.18em;font-size:11px;color:var(--mut)}
   .wrap{max-width:1140px;margin:0 auto;padding:0 24px;position:relative;z-index:1}
   section{padding:92px 0;position:relative;z-index:1}
+  .bg-eso,.bg-money{background-size:cover;background-position:center;background-color:var(--bg)}
+  .bg-eso{background-image:linear-gradient(rgba(7,4,16,.84),rgba(7,4,16,.9)),url(img/bg-eso.png)}
+  .bg-money{background-image:linear-gradient(rgba(7,4,16,.84),rgba(7,4,16,.9)),url(img/bg-money.png)}
   .vio{color:var(--violet2)}
   .eyebrow{font-family:'Space Mono',monospace;text-transform:uppercase;letter-spacing:.2em;font-size:12px;color:var(--violet2);margin-bottom:20px}
 
@@ -165,7 +168,10 @@
 
   /* FAQ */
   .faq{display:grid;gap:13px;margin-top:32px;max-width:860px}
-  .qa{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:24px}
+  .qa{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:22px 24px;
+    display:flex;gap:16px;align-items:flex-start}
+  .qa .qi{width:46px;height:46px;flex:0 0 46px;object-fit:contain;margin-top:2px;
+    filter:drop-shadow(0 6px 18px rgba(123,63,242,.55))}
   .qa .q{font-family:'Unbounded';font-weight:600;font-size:17px;margin-bottom:10px}
   .qa .a{color:var(--mut);font-size:16px}
   .qa .a b{color:var(--txt)}
@@ -212,7 +218,7 @@
   <div class="hero-word">ЭЗО<br>ДВИЖ</div>
   <img class="hero-photo" src="img/hero-cut.png" alt="">
   <div class="hero-grad"></div>
-  <div class="hero-top"><div class="eyebrow" style="margin:0">Фокус-группа «ЭзоДвиж» · 15 мест</div></div>
+  <div class="hero-top"><div class="eyebrow" style="margin:0">Фокус-группа «ЭзоДвиж»</div></div>
   <div class="hero-content">
     <p class="hero-sub">Как в нестабильное время всегда получать клиентов на <span class="vio">200.000+</span> и тратить минимум времени на блог?</p>
     <a href="#program" class="btn">Узнать программу</a>
@@ -235,7 +241,7 @@
 </section>
 
 <!-- ░ ЭКРАН 3 — КТО Я + КЕЙСЫ ░ -->
-<section id="cases" style="background:var(--bg2)">
+<section id="cases" class="bg-money">
   <div class="wrap">
     <div class="eyebrow">Кто я</div>
     <h2 style="font-size:clamp(22px,3.4vw,34px);margin-bottom:24px">Я эзотерик, который прошёл этот ад сам</h2>
@@ -286,7 +292,7 @@
 </section>
 
 <!-- ░ ЭКРАН 4 — ЧТО ЭТО ░ -->
-<section>
+<section class="bg-eso">
   <div class="wrap">
     <div class="lead">
       <div class="eyebrow">Что это</div>
@@ -303,7 +309,7 @@
 </section>
 
 <!-- ░ ЭКРАН 5 — ПРОГРАММА (КАРУСЕЛЬ) ░ -->
-<section id="program" style="background:var(--bg2)">
+<section id="program" class="bg-eso">
   <div class="wrap">
     <div class="prog-head">
       <div>
@@ -346,7 +352,7 @@
 </section>
 
 <!-- ░ ЭКРАН 7 — ДО/ПОСЛЕ ░ -->
-<section style="background:var(--bg2)">
+<section class="bg-money">
   <div class="wrap">
     <div class="ba">
       <div class="col before">
@@ -372,7 +378,7 @@
 </section>
 
 <!-- ░ ЭКРАН 8 — КАК ПОПАСТЬ ░ -->
-<section id="join">
+<section id="join" class="bg-money">
   <div class="wrap">
     <div class="eyebrow">Как попасть</div>
     <div class="steps">
@@ -382,35 +388,36 @@
       <div class="step">Если по пути — забираешь место. Их очень мало, так что мы тоже ничего не впариваем.</div>
     </div>
     <div class="price">Цена — <b>от 6.666 ₽ в месяц</b>. Окупается за 3 твои продажи.</div>
-    <div class="center mt"><a href="#" class="btn">Оставить заявку на созвон</a><span class="seat">Осталось 15 из 15 мест</span></div>
+    <div class="center mt"><a href="#" class="btn">Оставить заявку на созвон</a></div>
   </div>
 </section>
 
 <!-- ░ ЭКРАН 9 — FAQ ░ -->
-<section id="faq" style="background:var(--bg2)">
+<section id="faq" class="bg-eso">
   <div class="wrap">
-    <div class="eyebrow">Возражения</div>
+    <div class="eyebrow">Частые вопросы</div>
     <div class="faq">
-      <div class="qa"><div class="q">«Инста уже не работает, её запрещают, аккаунты блокируют»</div><div class="a">В 2025 потрачено более <b>130 миллионов</b> на эзотериков, и цифра растёт. Мы развиваем не одну соцсеть и не сходим с ума при этом, но я лично сделала первый миллион рублей <b>после первых блокировок</b> — клиенты точно есть.</div></div>
-      <div class="qa"><div class="q">«Конкуренция огромная»</div><div class="a">Это твой инфопузырь: по факту <b>70% эзотериков сливаются</b> через 3 месяца ведения блога, а те, кто ведёт годами, часто не используют всех инструментов и продолжают делать «Карту дня».</div></div>
-      <div class="qa"><div class="q">«Я не блогер, отшельник, боюсь камеры»</div><div class="a">Есть связка <b>тредс + карусели + ТГ — вообще без лица</b>. Выберем формат под твой типаж.</div></div>
-      <div class="qa"><div class="q">«Нет времени, маленький ребёнок»</div><div class="a"><b>7 роликов за 2–3 часа в неделю</b> на ИИ. Система как раз для тех, у кого нет времени.</div></div>
-      <div class="qa"><div class="q">«Ненавижу продавать, не хочу впаривать»</div><div class="a">Я тоже. Поэтому здесь — продажи через <b>ценность, пути клиента и автоматизации</b>. Ты не станешь маркетологом, но начнёшь контролировать свой доход.</div></div>
-      <div class="qa"><div class="q">«Прошла уже миллион курсов, толку ноль»</div><div class="a">Потому что их строили не эзотерики и без системы. Тут ты делаешь с первого дня, а <b>комьюнити, обратная связь, разборы и домашка не дадут тебе слиться</b>, как с остальных курсов. Здесь не отсиживаются.</div></div>
+      <div class="qa"><img class="qi" src="img/icon-question.png" alt="" onerror="this.remove()"><div><div class="q">«Инста уже не работает, её запрещают, аккаунты блокируют»</div><div class="a">В 2025 потрачено более <b>130 миллионов</b> на эзотериков, и цифра растёт. Мы развиваем не одну соцсеть и не сходим с ума при этом, но я лично сделала первый миллион рублей <b>после первых блокировок</b> — клиенты точно есть.</div></div></div>
+      <div class="qa"><img class="qi" src="img/icon-question.png" alt="" onerror="this.remove()"><div><div class="q">«Конкуренция огромная»</div><div class="a">Это твой инфопузырь: по факту <b>70% эзотериков сливаются</b> через 3 месяца ведения блога, а те, кто ведёт годами, часто не используют всех инструментов и продолжают делать «Карту дня».</div></div></div>
+      <div class="qa"><img class="qi" src="img/icon-question.png" alt="" onerror="this.remove()"><div><div class="q">«Я не блогер, отшельник, боюсь камеры»</div><div class="a">Есть связка <b>тредс + карусели + ТГ — вообще без лица</b>. Выберем формат под твой типаж.</div></div></div>
+      <div class="qa"><img class="qi" src="img/icon-question.png" alt="" onerror="this.remove()"><div><div class="q">«Нет времени, маленький ребёнок»</div><div class="a"><b>7 роликов за 2–3 часа в неделю</b> на ИИ. Система как раз для тех, у кого нет времени.</div></div></div>
+      <div class="qa"><img class="qi" src="img/icon-question.png" alt="" onerror="this.remove()"><div><div class="q">«Ненавижу продавать, не хочу впаривать»</div><div class="a">Я тоже. Поэтому здесь — продажи через <b>ценность, пути клиента и автоматизации</b>. Ты не станешь маркетологом, но начнёшь контролировать свой доход.</div></div></div>
+      <div class="qa"><img class="qi" src="img/icon-question.png" alt="" onerror="this.remove()"><div><div class="q">«Прошла уже миллион курсов, толку ноль»</div><div class="a">Потому что их строили не эзотерики и без системы. Тут ты делаешь с первого дня, а <b>комьюнити, обратная связь, разборы и домашка не дадут тебе слиться</b>, как с остальных курсов. Здесь не отсиживаются.</div></div></div>
     </div>
   </div>
 </section>
 
 <!-- ░ ФИНАЛ ░ -->
-<section class="final">
+<section class="final bg-money">
   <div class="wrap">
     <h2>Здесь не отсиживаются. Здесь двигаются.</h2>
     <a href="#" class="btn">Забрать своё место по лучшим условиям</a>
-    <span class="seat">15 мест · цена ниже прошлых потоков</span>
+    <span class="seat">Цена ниже прошлых потоков</span>
+    <div style="margin-top:30px"><a href="https://t.me/m/hoE_NNt8NDBi" target="_blank" rel="noopener" class="btn btn-ghost">Написать Софи и задать вопрос лично</a></div>
   </div>
 </section>
 
-<a href="#join" class="sticky-cta">Оставить заявку · 15 мест</a>
+<a href="#join" class="sticky-cta">Оставить заявку на созвон</a>
 
 <footer>Фокус-группа «ЭзоДвиж» · продвижение для эзотериков · 2026</footer>
 
